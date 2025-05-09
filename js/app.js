@@ -101,6 +101,36 @@ modalOverlay.addEventListener("click", (e) => {
 });
 
 
+// Scroll to Top Button
+const scrollBtn = document.querySelector('.scroll-top-btn');
+
+// Show button when scrolling down
+window.addEventListener('scroll', () => {
+  const scrollHeight = window.pageYOffset;
+  const documentHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercentage = (scrollHeight / documentHeight) * 100;
+
+  // Show button when scrolled down
+  if (scrollHeight > 100) {
+    scrollBtn.classList.add('show');
+  } else {
+    scrollBtn.classList.remove('show');
+  }
+
+  // Update border animation based on scroll percentage
+  scrollBtn.style.setProperty('--scroll-percentage', `${scrollPercentage}%`);
+});
+
+// Scroll to top when button is clicked
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
+
+
 // ********** set date ************
 // select span
 const date = (document.getElementById("date").innerHTML =
